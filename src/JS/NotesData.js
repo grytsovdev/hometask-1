@@ -73,9 +73,13 @@ function addNote(title, content, category) {
 }
 
 function deleteNote(id) {
-  const index = notes.findIndex((note) => note.id === id);
-  if (index !== -1) {
-    notes.splice(index, 1);
+  const notesIndex = notes.findIndex((note) => note.id === id);
+  const archivedIndex = archivedNotes.findIndex((note) => note.id === id);
+
+  if (notesIndex !== -1) {
+    notes.splice(notesIndex, 1);
+  } else if (archivedIndex !== -1) {
+    archivedNotes.splice(archivedIndex, 1);
   }
 }
 
@@ -83,12 +87,16 @@ function deleteAllNotes() {
   notes.length = 0;
 }
 
-function editNote(id, title, content, category) {
-  console.log(title);
-  const index = notes.findIndex((note) => note.id === id);
-  notes[index].title = title;
-  notes[index].content = content;
-  notes[index].category = category;
+function editNote(id, title, content, category, createdDate) {
+  const notesIndex = notes.findIndex((note) => note.id === id);
+
+  const editedNote = new Note(id, title, content, category, createdDate);
+
+  if (notesIndex !== -1) {
+    notes.splice(notesIndex, 1);
+    notes.push(editedNote);
+    sortNotes(notes);
+  }
 }
 
 function archiveNote(id) {

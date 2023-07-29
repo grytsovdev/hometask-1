@@ -197,8 +197,9 @@ $box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
   }
 }
 
-.notes-container {
-  color: black;
+.notes-container,
+.notes-stats-container {
+  color: $black;
   width: 100%;
   margin-top: 20px;
   border-radius: 10px;
@@ -215,7 +216,8 @@ $box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
     line-height: 60px;
   }
 }
-.note {
+.note,
+.notes-stats-row {
   color: $black;
   height: 50px;
 
@@ -223,20 +225,23 @@ $box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
     line-height: 50px;
     i {
       vertical-align: middle;
-      width: 48px;
-      height: 48px;
+      width: 40px;
+      height: 40px;
 
       display: inline-block;
       margin-right: 5px;
     }
     .tasks {
-      background: url(./IMG/task_FILL0_wght400_GRAD0_opsz48.svg) no-repeat;
+      background: url(./IMG/task_black_24dp.svg) no-repeat;
+      background-size: contain;
     }
     .lightbulb {
-      background: url(./IMG/lightbulb_FILL0_wght400_GRAD0_opsz48.svg) no-repeat;
+      background: url(./IMG/lightbulb_black_24dp.svg) no-repeat;
+      background-size: contain;
     }
     .comment {
-      background: url(./IMG/chat_FILL0_wght400_GRAD0_opsz48.svg) no-repeat;
+      background: url(./IMG/chat_black_24dp.svg) no-repeat;
+      background-size: contain;
     }
   }
   &:nth-child(odd) {
@@ -247,11 +252,14 @@ $box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
   }
 }
 .note,
-.notes-header {
+.notes-header,
+.notes-stats-header,
+.notes-stats-row {
   display: flex;
   justify-content: space-between;
   padding-right: 15px;
   padding-left: 15px;
+  align-items: center;
 
   div {
     width: 200px;
@@ -273,7 +281,7 @@ $box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
       line-height: 50px;
     }
     &:nth-child(2) {
-      width: 120px;
+      width: 150px;
     }
   }
 }
@@ -310,15 +318,18 @@ $box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
     margin: 0;
   }
 }
-
+.button-container {
+  margin-top: 3rem;
+  margin-bottom: 3rem;
+  display: flex;
+  justify-content: end;
+}
 .add-note-button {
   background-color: $darkblue;
   color: $lavander;
   width: 200px;
   border-radius: 10px;
   height: 50px;
-  margin-top: 3rem;
-  float: right;
   box-shadow: $box-shadow;
   font-weight: bold;
   font-size: $font-size-normal;
@@ -328,5 +339,28 @@ $box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
   &:hover {
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
     transform: scale(1.05);
+  }
+}
+.notes-stats-container {
+  width: 100%;
+}
+.notes-stats-header {
+  display: flex;
+  background-color: $blue;
+  color: $white;
+  justify-content: space-around;
+  div {
+    &:last-child {
+      justify-content: normal;
+    }
+  }
+}
+.notes-stats-row {
+  display: flex;
+  justify-content: space-around;
+  div {
+    &:last-child {
+      justify-content: normal;
+    }
   }
 }
