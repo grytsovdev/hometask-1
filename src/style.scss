@@ -7,9 +7,108 @@
   box-sizing: border-box;
 }
 
-$lightblue: #91c8e4;
-$blue: #749bc2;
-$darkblue: #4682a9;
+$lightblue: #bfdbf7;
+$blue: #1f7a8c;
+$darkblue: #022b3a;
+$lavander: #e1e5f2;
+$white: #ffff;
+$black: #4f4141;
+$font-size-large: 32px;
+$font-size-normal: 24px;
+$font-size-small: 16px;
+
+$box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
+
+.app-container {
+  width: 100%;
+  max-width: 1500px;
+  margin: 0 auto;
+}
+.app-header {
+  margin-top: 20px;
+  font-size: $font-size-large;
+  font-weight: bold;
+}
+@media (max-width: 767px) {
+  .app-container {
+    padding: 10px;
+  }
+
+  .modal {
+    width: 90%;
+    font-size: $font-size-small;
+  }
+
+  .note,
+  .notes-header {
+    padding-right: 5px;
+    padding-left: 5px;
+
+    div {
+      width: 100px;
+    }
+  }
+
+  .note-head-container > * {
+    width: 100%;
+    margin-bottom: 10px;
+  }
+
+  #content {
+    height: 300px;
+  }
+}
+
+@media (min-width: 768px) and (max-width: 1023px) {
+  .app-container {
+    padding: 20px;
+  }
+
+  .modal {
+    width: 80%;
+    font-size: $font-size-small;
+  }
+
+  .note,
+  .notes-header {
+    padding-right: 10px;
+    padding-left: 10px;
+
+    div {
+      width: 150px;
+    }
+  }
+
+  .note-head-container > * {
+    width: 45%;
+    margin-bottom: 20px;
+  }
+
+  #content {
+    height: 400px;
+  }
+}
+
+@media (min-width: 1024px) {
+  .note,
+  .notes-header {
+    padding-right: 15px;
+    padding-left: 15px;
+
+    div {
+      width: 200px;
+    }
+  }
+
+  .note-head-container > * {
+    width: 40%;
+    margin-bottom: 20px;
+  }
+
+  #content {
+    height: 700px;
+  }
+}
 
 .modal-container {
   position: fixed;
@@ -17,6 +116,7 @@ $darkblue: #4682a9;
   top: 0;
   bottom: 0;
   right: 0;
+  outline: none;
   background: rgba(0, 0, 0, 0.2);
   display: grid;
   place-items: center;
@@ -33,65 +133,200 @@ $darkblue: #4682a9;
 .modal {
   display: flex;
   flex-direction: column;
-  max-width: 700px;
+  width: 700px;
   max-height: 80vh;
+  font-size: $font-size-normal;
   overflow: auto;
+  border-radius: 10px;
   background-color: white;
-  border: 3px solid black;
+  border: 2px solid $lavander;
   padding: 2rem;
   position: relative;
 
-  input {
-    border: 1px solid black;
+  .note-head-container {
+    width: 100%;
+    margin-bottom: 20px;
+    display: flex;
+    justify-content: space-between;
+    * {
+      color: $black;
+      width: 40%;
+      height: 40px;
+      border: 2px solid $lavander;
+      border-radius: 10px;
+      padding-left: 5px;
+      padding-right: 5px;
+      font-size: $font-size-small;
+      outline: none;
+      background-color: transparent;
+      &::placeholder {
+        color: $black;
+      }
+    }
+  }
+
+  #content {
+    color: $black;
+    height: 700px;
+    resize: none;
+    font-size: $font-size-small;
+    border: 2px solid $lavander;
+    outline: none;
+    overflow: auto;
+    border-radius: 10px;
+    padding: 10px;
+    margin-bottom: 20px;
+  }
+  .button-container {
+    display: flex;
+    justify-content: flex-end;
+    button {
+      width: 110px;
+      height: 40px;
+      border-radius: 10px;
+      color: white;
+      font-size: $font-size-small;
+    }
+    .modal-cancel {
+      background-color: #d14949;
+      margin-right: 25px;
+    }
+    .modal-submit {
+      background-color: #04753e;
+    }
   }
 }
 
 .notes-container {
   color: black;
-  margin: 0 auto;
-  width: 1300px;
-  margin-top: 40px;
+  width: 100%;
+  margin-top: 20px;
   border-radius: 10px;
   overflow: hidden;
+  box-shadow: $box-shadow;
 }
 
 .notes-header {
-  background-color: $darkblue;
-  height: 3rem;
-  padding-left: 15px;
-  padding-right: 15px;
+  background-color: $blue;
+  color: $white;
+  height: 60px;
 
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
   div {
-    width: 225px;
-    font-size: 24px;
-    font-weight: bold;
+    line-height: 60px;
   }
 }
-
 .note {
+  color: $black;
+  height: 50px;
+
+  div {
+    line-height: 50px;
+    i {
+      vertical-align: middle;
+      width: 48px;
+      height: 48px;
+
+      display: inline-block;
+      margin-right: 5px;
+    }
+    .tasks {
+      background: url(./IMG/task_FILL0_wght400_GRAD0_opsz48.svg) no-repeat;
+    }
+    .lightbulb {
+      background: url(./IMG/lightbulb_FILL0_wght400_GRAD0_opsz48.svg) no-repeat;
+    }
+    .comment {
+      background: url(./IMG/chat_FILL0_wght400_GRAD0_opsz48.svg) no-repeat;
+    }
+  }
+  &:nth-child(odd) {
+    background-color: $white;
+  }
+  &:nth-child(even) {
+    background-color: $lavander;
+  }
+}
+.note,
+.notes-header {
   display: flex;
   justify-content: space-between;
   padding-right: 15px;
   padding-left: 15px;
-  height: 40px;
 
   div {
-    display: flex;
-    align-items: center;
-    width: 225px;
-    font-size: 24px;
+    width: 200px;
+    font-size: $font-size-normal;
     overflow: hidden;
+    display: inline-block;
     text-overflow: ellipsis;
     white-space: nowrap;
     font-weight: bold;
+    cursor: default;
+    &:last-child {
+      display: flex;
+      align-items: center;
+      justify-content: flex-end;
+      width: 150px;
+    }
+    &:first-child {
+      width: 250px;
+      line-height: 50px;
+    }
+    &:nth-child(2) {
+      width: 120px;
+    }
   }
 }
-.note:nth-child(odd) {
-  background-color: #ffff;
+
+.controls-container {
+  button {
+    background-color: transparent;
+    width: 40px;
+    height: 40px;
+    margin-right: 5px;
+    cursor: pointer;
+  }
+  .archived-button {
+    background: url(./IMG/archive_white_24dp.svg) no-repeat;
+    background-size: contain;
+  }
+  .delete-all-button {
+    background: url(./IMG/delete_white_24dp.svg) no-repeat;
+    background-size: contain;
+  }
+  .edit-note-button {
+    background: url(./IMG/edit_black_24dp.svg) no-repeat;
+    background-size: contain;
+  }
+  .archive-note-button {
+    background: url(./IMG/archive_black_24dp.svg) no-repeat;
+    background-size: contain;
+  }
+  .delete-note-button {
+    background: url(./IMG/delete_black_24dp.svg) no-repeat;
+    background-size: contain;
+  }
+  :last-child {
+    margin: 0;
+  }
 }
-.note:nth-child(even) {
-  background-color: #f5f5f5;
+
+.add-note-button {
+  background-color: $darkblue;
+  color: $lavander;
+  width: 200px;
+  border-radius: 10px;
+  height: 50px;
+  margin-top: 3rem;
+  float: right;
+  box-shadow: $box-shadow;
+  font-weight: bold;
+  font-size: $font-size-normal;
+  cursor: pointer;
+  transition: 0.3s all;
+
+  &:hover {
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+    transform: scale(1.05);
+  }
 }
